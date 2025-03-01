@@ -21,13 +21,55 @@
             text-align: center;
             font-size: 16px;
         }
+        .input-group {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
     <h1>Test Deep Links</h1>
     <p>Click on the buttons below to open specific screens in the app:</p>
     
-    <a href="projectapp://input?title=Groceries&amount=125&type=outcome" class="button">Open Outcome Screen</a>
-    <a href="projectapp://input?title=Salary&amount=10000&type=income" class="button">Open Incpme Screen</a>
+    <div class="input-group">
+        <h3>Outcome</h3>
+        <input type="number" id="outcomeAmount" placeholder="Enter outcome amount">
+        <a href="#" onclick="openOutcome()" class="button">Open Outcome Screen</a>
+    </div>
+
+    <div class="input-group">
+        <h3>Income</h3>
+        <input type="number" id="incomeAmount" placeholder="Enter income amount">
+        <a href="#" onclick="openIncome()" class="button">Open Income Screen</a>
+    </div>
+
+    <script>
+        function openOutcome() {
+            const amount = document.getElementById('outcomeAmount').value;
+            if (amount) {
+                window.location.href = `projectapp://input?title=Groceries&amount=${amount}&type=outcome`;
+            } else {
+                alert('Please enter an amount');
+            }
+        }
+
+        function openIncome() {
+            const amount = document.getElementById('incomeAmount').value;
+            if (amount) {
+                window.location.href = `projectapp://input?title=Salary&amount=${amount}&type=income`;
+            } else {
+                alert('Please enter an amount');
+            }
+        }
+    </script>
 </body>
 </html>
