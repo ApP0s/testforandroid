@@ -27,7 +27,8 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-        input[type="number"] {
+        input[type="number"],
+        input[type="text"] {
             width: 100%;
             padding: 8px;
             margin: 8px 0;
@@ -42,12 +43,14 @@
     
     <div class="input-group">
         <h3>Outcome</h3>
+        <input type="text" id="outcomeTitle" placeholder="Enter outcome title">
         <input type="number" id="outcomeAmount" placeholder="Enter outcome amount">
         <a href="#" onclick="openOutcome()" class="button">Open Outcome Screen</a>
     </div>
 
     <div class="input-group">
         <h3>Income</h3>
+        <input type="text" id="incomeTitle" placeholder="Enter income title">
         <input type="number" id="incomeAmount" placeholder="Enter income amount">
         <a href="#" onclick="openIncome()" class="button">Open Income Screen</a>
     </div>
@@ -55,8 +58,9 @@
     <script>
         function openOutcome() {
             const amount = document.getElementById('outcomeAmount').value;
+            const title = document.getElementById('outcomeTitle').value || 'Groceries';
             if (amount) {
-                window.location.href = `projectapp://input?title=Groceries&amount=${amount}&type=outcome`;
+                window.location.href = `projectapp://input?title=${encodeURIComponent(title)}&amount=${amount}&type=outcome`;
             } else {
                 alert('Please enter an amount');
             }
@@ -64,8 +68,9 @@
 
         function openIncome() {
             const amount = document.getElementById('incomeAmount').value;
+            const title = document.getElementById('incomeTitle').value || 'Salary';
             if (amount) {
-                window.location.href = `projectapp://input?title=Salary&amount=${amount}&type=income`;
+                window.location.href = `projectapp://input?title=${encodeURIComponent(title)}&amount=${amount}&type=income`;
             } else {
                 alert('Please enter an amount');
             }
